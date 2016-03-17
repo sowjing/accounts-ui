@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>Account Management</title>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+
+<body style = "background-color : light-blue">
+	<h1>
+		<mark>Account Management</mark>
+	</h1>
+
+	<h3>Add Transaction</h3>
+	<div ng-app="myApp" ng-controller="txnCtrl">
+		<form name="txnForm">
+			Description: <input ng-model="desc" />
+			<p />
+			Amount: <input ng-model="amt" required/>
+			<p />
+			Credit or Debit: 
+			<input type="radio" name="crdb" ng-model="crDb" value="credit" required>Credit
+			<input type="radio" name="crdb" ng-model="crDb" value="debit" required>Debit
+			<p />
+			<button ng-click="addTxn()">Add</button>
+			
+			<div>{{ result }}</div>
+		</form>
+
+		<h3>Transaction List</h3>
+
+		<table border="1">
+			<tr style="color: red">
+				<th>Date</th>
+				<th>Description</th>
+				<th>Amount</th>
+			</tr>
+			<tr ng-repeat="x in txn">
+				<td>{{ x.date | date }}</td>
+				<td>{{ x.description | uppercase }}</td>
+				<td>{{ x.amount | currency }}</td>
+			</tr>
+		</table>
+	</div>
+
+	<script>
+		var app = angular.module('myApp', []);
+		
+		
+		app.controller('txnCtrl', function($scope, $http) {
+			
+			$scope.addTxn = function addTxn() {
+				 var data = { desc: $scope.desc};
+				 
+				$http.post("http://localhost:8989/AccountMgmt/acctservice/txn/addtxn", data)
+				     .then(function(data, status) {
+				    	 $scope.result = data.data;
+				     });
+				}
+			});
+			
+			//$http.get("http://localhost:8989/AccountMgmt/acctservice/txn/gettxn")
+			  //   .then(function(response) {
+			  //  	 $scope.txn = response.data;
+			  //   });
+		//});
+	</script>
+</body>
+</html>

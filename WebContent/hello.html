@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<script
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<head>
+<title>Angular App</title>
+</head>
+<body>
+
+	<div ng-app="app1">
+		<p>
+			Name : <input type="text" ng-model="name" /><br/>
+		</p>
+		<p>
+			Password: <input type="password" ng-model="passwd" />
+		</p>
+		<h1>Hello {{name}} {{passwd}}</h1>
+	</div>
+	
+	
+<script>
+
+var app1 = angular.module("app1", []); 
+
+</script>
+
+</body>
+</html>
