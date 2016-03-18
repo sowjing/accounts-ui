@@ -11,17 +11,18 @@
 
 	<h3>Add Transaction</h3>
 	<div ng-app="myApp" ng-controller="txnCtrl">
-		<form name="txnForm">
-			Description: <input ng-model="desc" />
+		<form name="txnForm" novalidate>
+			Description: <input name="desc" ng-model="desc" />
 			<p />
-			Amount: <input ng-model="amt" required/>
+			Amount: <input name="amt" ng-model="amt" required />
 			<p />
-			Credit or Debit: 
-			<input type="radio" name="crdb" ng-model="crDb" value="credit" required>Credit
-			<input type="radio" name="crdb" ng-model="crDb" value="debit" required>Debit
+			Credit or Debit: <input type="radio" name="crdb" ng-model="crDb"
+				value="credit" required>Credit <input type="radio"
+				name="crdb" ng-model="crDb" value="debit" required>Debit
 			<p />
-			<button ng-click="addTxn()">Add</button>
-			
+			<button ng-click="addTxn()"
+				ng-disabled="txnForm.crdb.$invalid || txnForm.amt.$invalid || txnForm.desc.$invalid">Add</button>
+
 			<div>{{ result }}</div>
 		</form>
 
@@ -47,8 +48,8 @@
 		
 		app.controller('txnCtrl', function($scope, $http) {
 			
-			$scope.addTxn = function addTxn() {
-				 var data = { desc: $scope.desc};
+			$scope.addTxn = function() {
+				 var data = { desc: $scope.desc, amt: $scope.amt, crdb: $scope.crDb};
 				 
 				$http.post("http://localhost:8989/AccountMgmt/acctservice/txn/addtxn", data)
 				     .then(function(data, status) {
