@@ -1,0 +1,36 @@
+
+<h3>Add Transaction</h3>
+<div>
+	<form name="txnForm">
+		Description: <input name="desc" ng-model="desc" required /> <span
+			ng-show="txnForm.desc.$touched && txnForm.desc.$invalid">This field is required.</span>
+		<p />
+		Amount: <input name="amt" ng-model="amt" required />
+		<p />
+		Credit or Debit: <input type="radio" name="crdb" ng-model="crDb" value="credit" required>Credit
+		<input type="radio" name="crdb" ng-model="crDb" value="debit" required>Debit
+		<p />
+		<p style="color: red">
+			<b>{{ errortext }}</b>
+		</p>
+
+		<button ng-click="addTxn()" ng-disabled="txnForm.crdb.$invalid && txnForm.amt.$invalid">Add</button>
+
+		<div>{{ result }}</div>
+	</form>
+
+	<h3>Transaction List</h3>
+
+	<table border="1">
+		<tr style="color: red">
+			<th>Date</th>
+			<th>Description</th>
+			<th>Amount</th>
+		</tr>
+		<tr ng-repeat="x in txn">
+			<td>{{ x.date | date }}</td>
+			<td>{{ x.description | uppercase }}</td>
+			<td>{{ x.amount | currency }}</td>
+		</tr>
+	</table>
+</div>

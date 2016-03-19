@@ -1,68 +1,37 @@
-<html>
+<!DOCTYPE html>
+<html ng-app="app">
 <head>
-<title>Account Management</title>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<title>ABC Bank</title>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css">
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-cookies.js"></script>
+<script src="app.js"></script>
+<script src="config.js"></script>
 </head>
 
-<body style = "background-color : light-blue">
-	<h1>
-		<mark>Account Management</mark>
-	</h1>
+<body style="background-color: light-blue">
+	<!-- Menu -->
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#/"><b>ABC Bank</b></a>
+			</div>
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav navMenu">
+					<li><a href="#/customers">Customers</a></li>
+					<li><a href="#/txns">Transactions</a></li>
+					<li><a href="#/view2">Statement</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a>your partner in banking</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
-	<h3>Add Transaction</h3>
-	<div ng-app="myApp" ng-controller="txnCtrl">
-		<form name="txnForm" novalidate>
-			Description: <input name="desc" ng-model="desc" />
-			<p />
-			Amount: <input name="amt" ng-model="amt" required />
-			<p />
-			Credit or Debit: <input type="radio" name="crdb" ng-model="crDb"
-				value="credit" required>Credit <input type="radio"
-				name="crdb" ng-model="crDb" value="debit" required>Debit
-			<p />
-			<button ng-click="addTxn()"
-				ng-disabled="txnForm.crdb.$invalid || txnForm.amt.$invalid || txnForm.desc.$invalid">Add</button>
-
-			<div>{{ result }}</div>
-		</form>
-
-		<h3>Transaction List</h3>
-
-		<table border="1">
-			<tr style="color: red">
-				<th>Date</th>
-				<th>Description</th>
-				<th>Amount</th>
-			</tr>
-			<tr ng-repeat="x in txn">
-				<td>{{ x.date | date }}</td>
-				<td>{{ x.description | uppercase }}</td>
-				<td>{{ x.amount | currency }}</td>
-			</tr>
-		</table>
+	<div class="container">
+		<div ng-view></div>
 	</div>
-
-	<script>
-		var app = angular.module('myApp', []);
-		
-		
-		app.controller('txnCtrl', function($scope, $http) {
-			
-			$scope.addTxn = function() {
-				 var data = { desc: $scope.desc, amt: $scope.amt, crdb: $scope.crDb};
-				 
-				$http.post("http://localhost:8989/AccountMgmt/acctservice/txn/addtxn", data)
-				     .then(function(data, status) {
-				    	 $scope.result = data.data;
-				     });
-				}
-			});
-			
-			//$http.get("http://localhost:8989/AccountMgmt/acctservice/txn/gettxn")
-			  //   .then(function(response) {
-			  //  	 $scope.txn = response.data;
-			  //   });
-		//});
-	</script>
 </body>
 </html>
