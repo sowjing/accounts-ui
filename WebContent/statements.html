@@ -1,0 +1,24 @@
+
+<h3>Transaction List</h3>
+
+<div ng-show="wait">
+	<h4><b>Loading... Please wait.</b></h4>
+</div>
+
+
+<div ng-show="ready">
+	<table class="table">
+		<tr style="color: red">
+			<th>Date</th>
+			<th>Description</th>
+			<th>Amount</th>
+			<th>Balance</th>
+		</tr>
+		<tr ng-repeat="x in txn">
+			<td>{{ x.date | date }}</td>
+			<td>{{ x.description | uppercase }}</td>
+			<td>{{ x.amount | currency }}</td>
+			<td>{{ x.balance | currency }}</td>
+		</tr>
+	</table>
+</div>
