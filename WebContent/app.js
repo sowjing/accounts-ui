@@ -1,4 +1,5 @@
-var app = angular.module('app', [ 'ngRoute', 'ngCookies' ]);
+var app = angular.module('app', [ 'ngRoute', 'ngCookies', 'ngStorage',
+		'ngAnimate', 'ngAria', 'ngMessages', 'ngMaterial' ]);
 
 app.config(function($routeProvider) {
 	$routeProvider.when('/', {
@@ -16,6 +17,9 @@ app.config(function($routeProvider) {
 	}).when('/feedback', {
 		controller : fdCtrl,
 		templateUrl : 'feedback.html'
+	}).when('/test', {
+		controller : testCtrl,
+		templateUrl : 'test.html'
 	}).otherwise({
 		redirectTo : '/'
 	})
@@ -37,16 +41,31 @@ var stmtCtrl = function($scope, $http) {
 			});
 }
 
+// Use of cookies
 var homeCtrl = function($cookies, $scope, $location) {
 	var custName = $cookies.get('custName');
+
+	var expDate = new Date();
+	expDate.setDate(expDate.getDate() + 365);
+	var options = {
+		expires : expDate
+	};
+
 	// Setting a name
-	// $cookies.put('custName', 'John');
+	$cookies.put('custName', 'John', options);
 
 	if (custName) {
 		$scope.greeting = "Hello " + custName;
 	}
+}
 
-	$scope.test = "testing...hello";
+var testCtrl = function($scope, $localStorage, $cookies) {
+	$localStorage.message = "Testing local storage";
+
+	$scope.local = $localStorage.message;
+
+	var cookies = $cookies.getAll();
+	$scope.cookies = cookies;
 }
 
 var txnCtrl = function($scope, $http) {
@@ -57,15 +76,17 @@ var txnCtrl = function($scope, $http) {
 			$scope.errortext = "Please fill all details";
 			return;
 		}
-		
-		if(! angular.isNumber($scope.amt)) {
-			$scope.errortext = "Amount is invalid. Please enter a valid number.";
-			return;
-		}
+
+		// if (!angular.isNumber($scope.amt)) {
+		// console.log("amount=" + $scope.amt);
+		// $scope.errortext = "Amount is invalid. Please enter a valid number.";
+		// return;
+		// }
 
 		var input = {
 			desc : $scope.desc,
 			amt : $scope.amt,
+			mydate : $scope.mydate,
 			crdb : $scope.crDb
 		};
 
