@@ -1,20 +1,21 @@
 
-<h3>Contact Us</h3>
+<h3><b>Contact Us</b></h3>
 <div ng-show="fbdone" class="alert alert-success">
 	<h4>
 		<b>Thank you for your message. We will get back to you.</b>
 	</h4>
 </div>
 
+
 <div ng-show="fbshow">
 	<p>
 		<b>Please send, using form below, your comments/questions/feedback.</b>
 	</p>
-	<form name="fbForm" class="form-horizontal" role="form">
-		<p>
-			<textarea name="feedback" ng-model="feedback" rows="10" cols="60" required></textarea>
-		</p>
-	</form>
-
-	<button ng-click="sendFeedback()" ng-disabled="fbForm.feedback.$invalid" class="btn btn-primary">Submit</button>
+	<div class="form-group">
+		<form name="fbForm" class="form-horizontal" role="form">
+			<textarea class="form-control" rows="10" cols="45" ng-model="feedback" name="feedback" required></textarea>
+			<p>
+				<button ng-click="sendFeedback()" ng-disabled="fbForm.feedback.$invalid" class="btn btn-primary">Submit</button>
+			</p>
+	</div>
 </div>
