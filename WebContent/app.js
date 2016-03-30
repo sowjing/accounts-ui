@@ -18,7 +18,7 @@ app.config(function($routeProvider) {
 		controller : fdCtrl,
 		templateUrl : 'feedback.html'
 	}).when('/test', {
-		controller : testCtrl,
+		controller : 'testCtrl',
 		templateUrl : 'test.html'
 	}).otherwise({
 		redirectTo : '/'
@@ -29,9 +29,13 @@ var custCtrl = function($scope, $location) {
 	$scope.test = "testing...hello";
 }
 
-var stmtCtrl = function($scope, $http) {
+var stmtCtrl = function($scope, $http, $window) {
 
 	$scope.wait = true;
+
+	$scope.sort = function() {
+		$scope.ordercol = 'description';
+	}
 
 	$http.get("http://localhost:8989/AccountMgmt/acctservice/txn/gettxn").then(
 			function(response) {
@@ -51,22 +55,41 @@ var homeCtrl = function($cookies, $scope, $location) {
 		expires : expDate
 	};
 
+	var showDate = new Date();
+	var date = showDate.getHours();
+	$scope.currentDate = showDate;
 	// Setting a name
-	$cookies.put('custName', 'John', options);
+	$cookies.put('custName', 'Vihari', options);
 
 	if (custName) {
-		$scope.greeting = "Hello " + custName;
+		if (date < 12) {
+			day = "Good Morning.";
+		}
+		if (date >= 12 && date < 15) {
+			day = "Good Afternoon.";
+		}
+		if (date >= 15 && date < 24) {
+			day = "Good Evening.";
+		}
+
+		$scope.greeting = "Hello " + custName + ", " + day;
 	}
 }
 
-var testCtrl = function($scope, $localStorage, $cookies) {
+app.controller('testCtrl', function($scope, $cookies, $localStorage) {
 	$localStorage.message = "Testing local storage";
 
 	$scope.local = $localStorage.message;
 
 	var cookies = $cookies.getAll();
 	$scope.cookies = cookies;
-}
+
+	$scope.cname = $cookies.get('custName');
+
+	$scope.add = function() {
+		$scope.z = $scope.x + $scope.y;
+	}
+})
 
 var txnCtrl = function($scope, $http) {
 

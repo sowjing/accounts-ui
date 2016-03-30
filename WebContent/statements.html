@@ -1,12 +1,29 @@
-
-<h3><b>Transaction List</b></h3>
+<h3>
+	<b>Transaction List</b>
+</h3>
 
 <div ng-show="wait">
-	<h4><b>Loading... Please wait.</b></h4>
+	<h4>
+		<b>Loading... Please wait.</b>
+	</h4>
 </div>
 
 
 <div ng-show="ready">
+	<div>
+		<div style="max-width: 200px; display: inline-block">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span> <input
+					class="form-control" placeholder="Search" ng-model="q" />
+			</div>
+		</div>
+		<div class="pull-right" style="display: inline-block">
+			<div class="input-group">
+				<button ng-click="sort()" class="btn btn-default">Sort</button>
+			</div>
+		</div>
+	</div>
+
 	<table class="table">
 		<tr style="color: red">
 			<th>Date</th>
@@ -14,7 +31,7 @@
 			<th>Amount</th>
 			<th>Balance</th>
 		</tr>
-		<tr ng-repeat="x in txn">
+		<tr ng-repeat="x in txn | filter:q | orderBy:ordercol">
 			<td>{{ x.date | date }}</td>
 			<td>{{ x.description | uppercase }}</td>
 			<td>{{ x.amount | currency }}</td>
