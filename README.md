@@ -5,5 +5,5 @@ It has following features with work in progress:
 
 1. Add a transaction to bank account
 2. Print statement with last 5 transactions
-3. List transactions based for a month, and between a time range
+3. List transactions for a month and for a time range
 4. Search and sort transactions

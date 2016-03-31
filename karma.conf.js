@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Tue Mar 29 2016 19:54:45 GMT-0600 (Mountain Daylight Time)
+// Generated on Wed Mar 30 2016 21:14:45 GMT-0600 (Mountain Daylight Time)
 
 module.exports = function(config) {
   config.set({
@@ -15,17 +15,17 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'lib/angular.js',
-	  'lib/angular-route.js',
-	  'lib/angular-cookies.js',
-	  'lib/angular-animate.js',
-	  'lib/angular-aria.js',
-	  'lib/angular-messages.js',
-	  'lib/ngStorage.min.js',
-	  'lib/angular-material.js',
-	  'lib/angular-mocks.js',
-      'WebContent/*.js',
-      'test/*.test.js',
+		'lib/angular.js',
+		'lib/angular-route.js',
+		'lib/angular-cookies.js',
+		'lib/angular-animate.js',
+		'lib/angular-aria.js',
+		'lib/angular-messages.js',
+		'lib/ngStorage.min.js',
+		'lib/angular-material.js',
+		'lib/angular-mocks.js',
+		'WebContent/*.js',
+		'test/*.test.js',
     ],
 
 
@@ -65,7 +65,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode

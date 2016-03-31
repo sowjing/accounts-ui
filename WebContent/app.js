@@ -89,6 +89,10 @@ app.controller('testCtrl', function($scope, $cookies, $localStorage) {
 	$scope.add = function() {
 		$scope.z = $scope.x + $scope.y;
 	}
+
+	$scope.subtract = function() {
+		$scope.z = $scope.x - $scope.y;
+	}
 })
 
 var txnCtrl = function($scope, $http) {
