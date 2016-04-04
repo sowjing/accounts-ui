@@ -9,8 +9,10 @@
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="desc">Description:</label>
 			<div class="col-sm-10">
-				<input name="desc" ng-model="desc" required /> <span
-					ng-show="txnForm.desc.$touched && txnForm.desc.$invalid">This field is required.</span>
+				<select name="desc" ng-model="desc">
+					<option ng-repeat="option in categories" value="{{option.value}}">{{option.label}}</option>
+					<option value="">--Please select option--</option>
+				</select>
 			</div>
 		</div>
 		</br>
