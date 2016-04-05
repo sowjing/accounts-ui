@@ -35,14 +35,14 @@ var stmtCtrl = function($scope, $http, $window) {
 
 	$scope.sort = function() {
 		$scope.ordercol = 'description';
+		$scope.reverse = !$scope.reverse;
 	}
 
-	$http.get("http://localhost:8989/AccountMgmt/acctservice/txn/gettxn").then(
-			function(response) {
-				$scope.wait = false;
-				$scope.ready = true;
-				$scope.txn = response.data;
-			});
+	$http.get("/data/stmt.json").then(function(response) {
+		$scope.wait = false;
+		$scope.ready = true;
+		$scope.txn = response.data;
+	});
 }
 
 // Use of cookies

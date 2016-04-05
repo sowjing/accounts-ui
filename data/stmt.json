@@ -1,0 +1,27 @@
+[
+	{ "date": "2016-01-01",
+	  "description": "salary credit",
+	  "amount": "500",
+	  "balance": "500"
+	},
+	{ "date": "2016-01-03",
+	  "description": "groceries",
+	  "amount": "90",
+	  "balance": "410"
+	},
+	{ "date": "2016-02-01",
+	  "description": "clothes",
+	  "amount": "75",
+	  "balance": "465"
+	},
+	{ "date": "2016-03-01",
+	  "description": "salary credit",
+	  "amount": "500",
+	  "balance": "965"
+	},
+	{ "date": "2016-02-01",
+	  "description": "medical purchases",
+	  "amount": "25",
+	  "balance": "445"
+	}
+]

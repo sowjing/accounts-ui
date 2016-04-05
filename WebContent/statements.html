@@ -31,7 +31,7 @@
 			<th>Amount</th>
 			<th>Balance</th>
 		</tr>
-		<tr ng-repeat="x in txn | filter:q | orderBy:ordercol">
+		<tr ng-repeat="x in txn | filter:q | orderBy:ordercol:reverse">
 			<td>{{ x.date | date }}</td>
 			<td>{{ x.description | uppercase }}</td>
 			<td>{{ x.amount | currency }}</td>
