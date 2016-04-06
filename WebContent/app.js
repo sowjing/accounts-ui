@@ -86,11 +86,11 @@ var txnCtrl = function($scope, $http) {
 	} ];
 
 	$scope.addTxn = function() {
-		if (!$scope.desc || !$scope.amt || !$scope.crDb) {
-
-			$scope.errortext = "Please fill all details";
-			return;
-		}
+		// if (!$scope.desc || !$scope.amt || !$scope.crDb) {
+		//
+		// $scope.errortext = "Please fill all details";
+		// return;
+		// }
 
 		// if (!angular.isNumber($scope.amt)) {
 		// console.log("amount=" + $scope.amt);
@@ -99,7 +99,7 @@ var txnCtrl = function($scope, $http) {
 		// }
 
 		var input = {
-			desc : $scope.desc,
+			desc : $scope.desc.value,
 			amt : $scope.amt,
 			mydate : $scope.mydate,
 			crdb : $scope.crDb
@@ -107,7 +107,11 @@ var txnCtrl = function($scope, $http) {
 
 		$http.post("http://localhost:8989/AccountMgmt/acctservice/txn/addtxn",
 				input).then(function(response, status) {
-			$scope.result = response.data;
+			if (response.data = 'success') {
+				$scope.result = 'Transaction added successfully.'
+			} else {
+				$scope.result = 'Transaction failed.'
+			}
 		});
 	}
 }

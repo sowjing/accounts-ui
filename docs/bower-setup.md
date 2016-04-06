@@ -1,5 +1,5 @@
-Bower is dependency manager tool.
-It can download required dependencies for your application.
+Bower is JavaScript dependency manager tool.
+It can download required dependencies for your UI application.
 
 Prerequisites:
 
